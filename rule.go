@@ -1,8 +1,40 @@
 package sentry
 
-import "fmt"
+import (
+	"fmt"
+	"time"
+)
+
+type RuleCondition struct {
+	ID   string `json:"id"`
+	Name string `json:"name"`
+}
+
+type RuleAction struct {
+	ID               string `json:"id"`
+	TargetType       string `json:"targetType,omitempty"`
+	TargetIdentifier string `json:"targetIdentifier,omitempty"`
+	Name             string `json:"name"`
+	Workspace        string `json:"workspace,omitempty"`
+	Channel          string `json:"channel,omitempty"`
+	Tags             string `json:"tags,omitempty"`
+	ChannelID        string `json:"channel_id,omitempty"`
+}
 
 type Rule struct {
+	ID          string          `json:"id"`
+	Conditions  []RuleCondition `json:"conditions"`
+	Filters     []interface{}   `json:"filters"`
+	Actions     []RuleAction    `json:"actions"`
+	ActionMatch string          `json:"actionMatch"`
+	FilterMatch string          `json:"filterMatch"`
+	Frequency   int             `json:"frequency"`
+	Name        string          `json:"name"`
+	DateCreated time.Time       `json:"dateCreated"`
+	Owner       string          `json:"owner"`
+	CreatedBy   interface{}     `json:"createdBy"`
+	Environment string          `json:"environment"`
+	Projects    []string        `json:"projects"`
 }
 
 // GetRules will fetch all alert rules for the specified organization and project.
