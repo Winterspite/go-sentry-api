@@ -5,6 +5,17 @@ import (
 	"time"
 )
 
+const (
+	FirstSeenEventCondition      = "sentry.rules.conditions.first_seen_event.FirstSeenEventCondition"
+	FirstSeenEventConditionText  = "A new issue is created"
+	RegressionEventCondition     = "sentry.rules.conditions.regression_event.RegressionEventCondition"
+	RegressionEventConditionText = "The issue changes state from resolved to unresolved"
+	NotifyEmailAction            = "sentry.mail.actions.NotifyEmailAction"
+	NotifyEmailActionText        = "Send a notification to %s"
+	TargetIssueOwners            = "IssueOwners"
+	NotifySlackAction            = "sentry.integrations.slack.notify_action.SlackNotifyServiceAction"
+)
+
 type RuleCondition struct {
 	ID   string `json:"id"`
 	Name string `json:"name"`
